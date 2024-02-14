@@ -14,7 +14,7 @@ export const myTodos: Todo[] = [
   {
     id: 3,
     title: "Start canvas project with next.js 💻",
-    completed: true,
+    completed: false,
   },
   {
     id: 4,

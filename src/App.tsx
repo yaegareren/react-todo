@@ -1,10 +1,13 @@
+import { useState } from "react";
 import TodoList from "./components/TodoList";
 import { myTodos } from "./data/todos";
 
 function App() {
+  const [todos, setTodos] = useState(myTodos);
+
   function setTodoCompleted(id: number, completed: boolean) {
-    alert(
-      `Todo with id ${id} is now ${completed ? "completed" : "not completed"}`
+    setTodos((prevTodos) =>
+      prevTodos.map((todo) => (todo.id === id ? { ...todo, completed } : todo))
     );
   }
 
@@ -16,7 +19,7 @@ function App() {
         </h1>
         <div className="max-w-lg bg-zinc-200 mx-auto p-4 ">
           <div className="space-y-2">
-            {myTodos.map((todo) => (
+            {todos.map((todo) => (
               <TodoList
                 key={todo.id}
                 todo={todo}
