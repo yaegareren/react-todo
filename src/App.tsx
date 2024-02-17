@@ -2,6 +2,7 @@ import { useState } from "react";
 import { myTodos } from "./data/todos";
 import AddTodo from "./components/AddTodo";
 import TodoItem from "./components/TodoItem";
+import TodoSummary from "./components/TodoSummary";
 
 function App() {
   const [todos, setTodos] = useState(myTodos);
@@ -15,7 +16,7 @@ function App() {
   function addTodo(title: string) {
     setTodos((prevTodos) => [
       {
-        id: prevTodos.length + 1,
+        id: Date.now(), // using timestamps in milliseconds as id
         title,
         completed: false,
       },
@@ -25,6 +26,10 @@ function App() {
 
   function deleteTodo(id: number) {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }
+
+  function deleteAllCompletedTodos() {
+    setTodos((prevTodos) => prevTodos.filter((todo) => !todo.completed));
   }
 
   return (
@@ -41,6 +46,10 @@ function App() {
             onDelete={deleteTodo}
           />
         </div>
+        <TodoSummary
+          todos={todos}
+          deleteAllCompleted={deleteAllCompletedTodos}
+        />
       </main>
     </>
   );

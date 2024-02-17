@@ -26,7 +26,7 @@ export default function TodoList({
         </span>
       </label>
       <button onClick={() => onDelete(todo.id)} className="p-2">
-        <Trash2 size={20} className="text-gray-500" />
+        <Trash2 size={20} className="text-gray-500 hover:text-gray-600" />
       </button>
     </div>
   );
